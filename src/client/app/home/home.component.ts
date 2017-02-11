@@ -13,6 +13,7 @@ import { NameListService } from '../shared/name-list/name-list.service';
 export class HomeComponent implements OnInit {
 
   newName: string = '';
+  postcode: string = '';
   errorMessage: string;
   names: any[] = [];
 
