@@ -1,4 +1,4 @@
-<md-card>
+<md-card *ngIf="!(hasSelected | async)">
   <md-card-subtitle class="device-subtitle">
     Select Devices to save the pandas
   </md-card-subtitle>
@@ -14,9 +14,25 @@
     </md-list>
   </md-card-content>
   <md-card-actions>
-    <button md-button (click)="onSave()" [disabled]="saving | async">Submit Devices</button>
+    <button md-button (click)="onSave()">Submit Devices</button>
   </md-card-actions>
   <md-card-footer>
-    <md-progress-bar mode="indeterminate" *ngIf="saving | async" color="accent"></md-progress-bar>
+    <md-progress-bar mode="indeterminate" *ngIf="loading | async" color="accent"></md-progress-bar>
   </md-card-footer>
+</md-card>
+<md-card *ngIf="(hasSelected | async)">
+  <md-card-subtitle class="device-subtitle">
+    Thanks for Submitting your panda saving response. 11 pandas will now not go without electricity tonight.
+  </md-card-subtitle>
+  <md-card-title>Devices</md-card-title>
+  <md-card-content>
+    <md-list>
+      <h3 md-subheader>Items you selected for this event.</h3>
+      <md-list-item *ngFor="let device of previous | async">
+        <md-slide-toggle [disabled]="true" [checked]="device.checked">
+          {{device.name}}
+        </md-slide-toggle>
+      </md-list-item>
+    </md-list>
+  </md-card-content>
 </md-card>

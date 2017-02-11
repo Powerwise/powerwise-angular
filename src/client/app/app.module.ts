@@ -11,6 +11,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {HomeModule} from './home/home.module';
 import {DeviceEffects} from './shared/effects/device.effects';
+import {ResponseEffects} from './shared/effects/response.effects';
 import {SheddingEffects} from './shared/effects/shedding.effects';
 import {UserEffects} from './shared/effects/user.effects';
 import {reducer} from './shared/reducers/index';
@@ -21,7 +22,7 @@ import {SharedModule} from './shared/shared.module';
     BrowserModule, HttpModule, AppRoutingModule, AdminModule, HomeModule,
     StoreModule.provideStore(reducer), SharedModule.forRoot(),
     EffectsModule.run(UserEffects), EffectsModule.run(DeviceEffects),
-    EffectsModule.run(SheddingEffects),
+    EffectsModule.run(SheddingEffects), EffectsModule.run(ResponseEffects),
     StoreDevtoolsModule.instrumentOnlyWithExtension()
   ],
   declarations: [AppComponent],

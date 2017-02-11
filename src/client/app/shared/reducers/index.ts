@@ -6,6 +6,7 @@ import {createSelector} from 'reselect';
 
 import * as fromDevice from './device.reducer';
 import * as fromResponse from './response.reducer';
+import {getEventId} from './response.reducer';
 import * as fromShedding from './shedding.reducer';
 import * as fromUser from './user.reducer';
 
@@ -24,7 +25,7 @@ const reducers = {
   response: fromResponse.reducer
 };
 const developmentReducer: ActionReducer<State> = compose(
-    localStorageSync(['user', 'device', 'shedding'], true),
+    localStorageSync(['user', 'device', 'shedding', 'response'], true),
     combineReducers)(reducers);
 
 export function reducer(state: any, action: any) {
@@ -72,7 +73,13 @@ export const getResponseState = (state: State) => state.response;
 
 export const getSelectedIds =
     createSelector(getResponseState, fromResponse.getSelected);
-
+export const getSelectedEventId =
+    createSelector(getResponseState, fromResponse.getEventId);
+export const getSelectionLoading =
+    createSelector(getResponseState, fromResponse.getLoading);
+export const getPreviousResponses =
+    createSelector(getResponseState, fromResponse.getResponses);
+createSelector(getResponseState, fromResponse.getLoading);
 export const getSelectedDevcies = createSelector(
     getSelectedIds, getDeviceEntities, (selectedIds, devices) => {
       return selectedIds.map(id => devices[id]);
@@ -80,4 +87,22 @@ export const getSelectedDevcies = createSelector(
 export const getSelectedPotential =
     createSelector(getSelectedDevcies, (selected) => {
       return selected.reduce((a, b) => a + b.killowats, 0);
+    });
+export const getSelecteEventAndDevices = createSelector(
+    getSelectedDevcies, getUser, getSelectedEventId,
+    (devices, user, eventId) => {
+      return {devices, email: user.email, eventId};
+    });
+export const selectionAlreadyMade = createSelector(
+    getPreviousResponses, getSelectedEventId, (responses, eventId) => {
+      return ~Object.keys(responses).indexOf(eventId);
+    });
+export const previousSelection = createSelector(
+    getPreviousResponses, getSelectedEventId, getDevices,
+    (responses, eventId, devices) => {
+      let previous = (responses[eventId] || []);
+      return devices.map((device) => {
+        return Object.assign(
+            {}, device, {checked: ~previous.indexOf(device.id)});
+      });
     });

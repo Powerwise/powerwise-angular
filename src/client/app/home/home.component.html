@@ -1,4 +1,4 @@
-<md-card *ngIf="(registered | async) === false">
+<md-card>
   <md-card-subtitle>Save the pandas</md-card-subtitle>
   <md-card-title>Register</md-card-title>
   <md-card-content>
@@ -36,7 +36,7 @@
     </md-list>
   </md-card-content>
   <md-card-actions>
-    <button md-button (click)="onSave()" [disabled]="saving | async">Save</button>
+    <button md-button (click)="onSave()">Save</button>
   </md-card-actions>
   <md-card-footer>
     <md-progress-bar mode="indeterminate" *ngIf="saving | async" color="accent"></md-progress-bar>

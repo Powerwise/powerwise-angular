@@ -23,6 +23,11 @@ export class ApiService {
         .map((res: Response) => res.json())
         .catch(this.handleError);
   }
+  respond(payload: any) {
+    return this.http.post(`${Config.API}/respond`, payload)
+        .map((res: Response) => res.json())
+        .catch(this.handleError);
+  }
   /**
     * Handle HTTP error
     */
