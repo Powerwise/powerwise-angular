@@ -16,7 +16,7 @@ export class UserEffects {
           .map((action: user.RegisterAction) => action.payload)
           .switchMap(payload => {
             return this.api.register(payload).map(
-                user => new user.RegisterCompleteAction(user));
+                payload => new user.RegisterCompleteAction(payload));
           });
   constructor(private actions$: Actions, private api: ApiService) {}
 }

@@ -1,4 +1,5 @@
 import {Action, ActionReducer} from '@ngrx/store';
+import * as user from '../actions/user.actions';
 
 export const REGISTER = 'REGISTER';
 export const RECEIVE_REGISTER = 'RECEIVE_REGISTER';
@@ -19,10 +20,10 @@ export const initialState = {
 };
 export function reducer(state: any = initialState, action: Action) {
   switch (action.type) {
-    case REGISTER: {
+    case user.ActionTypes.REGISTER: {
       return Object.assign(state, {loading: true});
     }
-    case RECEIVE_REGISTER: {
+    case user.ActionTypes.REGISTER_COMPLETE: {
       return Object.assign(state, {loading: false, user: action.payload});
     }
     default:
