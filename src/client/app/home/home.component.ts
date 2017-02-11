@@ -1,5 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { NameListService } from '../shared/name-list/name-list.service';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {Store} from '@ngrx/store';
+import {Observable} from 'rxjs/Rx';
+
+import * as user from '../shared/actions/user.actions';
+import {NameListService} from '../shared/name-list/name-list.service';
+import * as fromRoot from '../shared/reducers/index';
 
 /**
  * This class represents the lazy loaded HomeComponent.
@@ -11,46 +17,21 @@ import { NameListService } from '../shared/name-list/name-list.service';
   styleUrls: ['home.component.css'],
 })
 export class HomeComponent implements OnInit {
+  loading: Observable<boolean>;
+  form: FormGroup;
+  constructor(private store: Store<fromRoot.State>, public fb: FormBuilder) {
+    this.loading = store.select(fromRoot.getLoading);
+  }
 
-  newName: string = '';
-  errorMessage: string;
-  names: any[] = [];
-
-  /**
-   * Creates an instance of the HomeComponent with the injected
-   * NameListService.
-   *
-   * @param {NameListService} nameListService - The injected NameListService.
-   */
-  constructor(public nameListService: NameListService) {}
-
-  /**
-   * Get the names OnInit
-   */
   ngOnInit() {
-    this.getNames();
+    this.createForm();
   }
 
-  /**
-   * Handle the nameListService observable
-   */
-  getNames() {
-    this.nameListService.get()
-      .subscribe(
-        names => this.names = names,
-        error => this.errorMessage = <any>error
-      );
+  createForm() {
+    this.form = this.fb.group(
+        {email: ['probinson+1@nextfaze.com'], postcode: ['5006']});
   }
-
-  /**
-   * Pushes a new name onto the names array
-   * @return {boolean} false to prevent default form submit behavior to refresh the page.
-   */
-  addName(): boolean {
-    // TODO: implement nameListService.post
-    this.names.push(this.newName);
-    this.newName = '';
-    return false;
+  register(payload: any) {
+    this.store.dispatch(new user.RegisterAction(payload));
   }
-
 }

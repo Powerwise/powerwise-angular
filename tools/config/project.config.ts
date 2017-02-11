@@ -35,11 +35,22 @@ export class ProjectConfig extends SeedConfig {
     ];
 
     // Add packages (e.g. ng2-translate)
-    let additionalPackages: ExtendPackages[] = [{
-      name: '@angular/material',
-      // Path to the package's bundle
-      path: 'node_modules/@angular/material/bundles/material.umd.js'
-    }];
+    let additionalPackages: ExtendPackages[] = [
+      {
+        name: '@angular/material',
+        path: 'node_modules/@angular/material/bundles/material.umd.js'
+      },
+      {
+        name: '@ngrx/store',
+        path: 'node_modules/@ngrx/store/bundles/store.umd.js'
+      },
+      {name: '@ngrx/core', path: 'node_modules/@ngrx/core/bundles/core.umd.js'},
+      {
+        name: '@ngrx/effects',
+        path: 'node_modules/@ngrx/effects/bundles/effects.umd.js'
+      },
+      {name: 'reselect', path: 'node_modules/reselect/dist/reselect.js'}
+    ];
     //
     this.addPackagesBundles(additionalPackages);
 

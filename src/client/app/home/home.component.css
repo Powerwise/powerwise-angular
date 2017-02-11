@@ -1,7 +1,13 @@
 :host {
   display: flex;
+  justify-content: space-around;
 }
 
 form {
   display: flex;
+  flex-direction: column;
+}
+
+md-card {
+  min-width: 500px;
 }
