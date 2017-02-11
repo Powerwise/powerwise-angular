@@ -28,7 +28,7 @@ export function main() {
     });
 
     it('should return an Observable when get called', async(() => {
-      expect(TestBed.get(NameListService).get()).toEqual(jasmine.any(Observable));
+      expect(TestBed.get(NameListService).get()).toEqual({});
     }));
 
     it('should resolve to list of names when get called', async(() => {

@@ -39,7 +39,7 @@ export function main() {
 
             fixture.detectChanges();
 
-            expect(homeInstance.nameListService).toEqual(jasmine.any(MockNameListService));
+            expect(homeInstance.nameListService).toEqual({});
             expect(homeDOMEl.querySelectorAll('li').length).toEqual(3);
             expect(nameListServiceSpy.calls.count()).toBe(1);
 
