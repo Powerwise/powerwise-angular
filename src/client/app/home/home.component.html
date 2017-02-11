@@ -1,10 +1,9 @@
-<p>Howdy! Here's a list of awesome computer scientists. Do you know any others? Add to the list yourself.</p>
-
 <form (submit)="addName()">
-  <input [(ngModel)]="newName" name="newName" placeholder="Awesome Computer Scientist">
-  <button type="submit">Add</button>
+  <md-input-container>
+    <input md-input [(ngModel)]="newName" name="email" placeholder="Email">
+  </md-input-container>
+  <md-input-container>
+    <input md-input [(ngModel)]="postcode" name="postcode" placeholder="Postcode">
+  </md-input-container>
+  <button type="submit">Register Me!</button>
 </form>
-
-<ul>
-  <li *ngFor="let name of names">{{name}}</li>
-</ul>

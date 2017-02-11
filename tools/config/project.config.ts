@@ -1,14 +1,15 @@
-import { join } from 'path';
+import {join} from 'path';
 
-import { SeedConfig } from './seed.config';
+import {SeedConfig} from './seed.config';
+import {ExtendPackages} from './seed.config.interfaces';
 // import { ExtendPackages } from './seed.config.interfaces';
 
 /**
- * This class extends the basic seed configuration, allowing for project specific overrides. A few examples can be found
+ * This class extends the basic seed configuration, allowing for project
+ * specific overrides. A few examples can be found
  * below.
  */
 export class ProjectConfig extends SeedConfig {
-
   PROJECT_TASKS_DIR = join(process.cwd(), this.TOOLS_DIR, 'tasks', 'project');
 
   constructor() {
@@ -27,26 +28,28 @@ export class ProjectConfig extends SeedConfig {
 
     // Add `local` third-party libraries to be injected/bundled.
     this.APP_ASSETS = [
-      // {src: `${this.APP_SRC}/your-path-to-lib/libs/jquery-ui.js`, inject: true, vendor: false}
-      // {src: `${this.CSS_SRC}/path-to-lib/test-lib.css`, inject: true, vendor: false},
+      // {src: `${this.APP_SRC}/your-path-to-lib/libs/jquery-ui.js`, inject:
+      // true, vendor: false}
+      // {src: `${this.CSS_SRC}/path-to-lib/test-lib.css`, inject: true, vendor:
+      // false},
     ];
 
     // Add packages (e.g. ng2-translate)
-    // let additionalPackages: ExtendPackages[] = [{
-    //   name: 'ng2-translate',
-    //   // Path to the package's bundle
-    //   path: 'node_modules/ng2-translate/bundles/ng2-translate.umd.js'
-    // }];
+    let additionalPackages: ExtendPackages[] = [{
+      name: '@angular/material',
+      // Path to the package's bundle
+      path: 'node_modules/@angular/material/bundles/material.umd.js'
+    }];
     //
-    // this.addPackagesBundles(additionalPackages);
+    this.addPackagesBundles(additionalPackages);
 
     /* Add proxy middlewar */
     // this.PROXY_MIDDLEWARE = [
-    //   require('http-proxy-middleware')({ ws: false, target: 'http://localhost:3003' })
+    //   require('http-proxy-middleware')({ ws: false, target:
+    //   'http://localhost:3003' })
     // ];
 
     /* Add to or override NPM module configurations: */
     // this.PLUGIN_CONFIGS['browser-sync'] = { ghostMode: false };
   }
-
 }
