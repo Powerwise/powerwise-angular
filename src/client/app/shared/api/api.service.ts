@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Http, Response} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
+import {Config} from '../config/env.config';
 // import 'rxjs/add/operator/do';  // for debugging
 
 @Injectable()
@@ -8,14 +9,20 @@ export class ApiService {
   constructor(private http: Http) {}
 
   register(payload: any) {
-    return this.http
-        .post(
-            'https://gpckt1o796.execute-api.us-east-1.amazonaws.com/staging/register',
-            payload)
+    return this.http.post(`${Config.API}/register`, payload)
         .map((res: Response) => res.json())
         .catch(this.handleError);
   }
-
+  save(payload: any) {
+    return this.http.post(`${Config.API}/save-devices`, payload)
+        .map((res: Response) => res.json())
+        .catch(this.handleError);
+  }
+  createEvent(payload: any) {
+    return this.http.post(`${Config.API}/create-event`, payload)
+        .map((res: Response) => res.json())
+        .catch(this.handleError);
+  }
   /**
     * Handle HTTP error
     */

@@ -49,7 +49,20 @@ export class ProjectConfig extends SeedConfig {
         name: '@ngrx/effects',
         path: 'node_modules/@ngrx/effects/bundles/effects.umd.js'
       },
-      {name: 'reselect', path: 'node_modules/reselect/dist/reselect.js'}
+      {name: 'reselect', path: 'node_modules/reselect/dist/reselect.js'},
+      {name: 'ramda', path: 'node_modules/ramda/dist/ramda.js'},
+
+      {
+        name: '@ngrx/store-devtools',
+        path: 'node_modules/@ngrx/store-devtools/bundles/store-devtools.umd.js'
+      },
+      {name: 'node-uuid', path: 'node_modules/node-uuid/uuid'},
+
+      {
+        name: 'ngrx-store-localstorage',
+        path: 'node_modules/ngrx-store-localstorage/dist/index'
+      },
+      {name: 'hammerjs', path: 'node_modules/hammerjs/hammer'}
     ];
     //
     this.addPackagesBundles(additionalPackages);

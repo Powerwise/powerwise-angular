@@ -1,9 +1,6 @@
 import {Action, ActionReducer} from '@ngrx/store';
 import * as user from '../actions/user.actions';
 
-export const REGISTER = 'REGISTER';
-export const RECEIVE_REGISTER = 'RECEIVE_REGISTER';
-
 export interface State {
   registered: boolean;
   loading: boolean;
@@ -12,7 +9,7 @@ export interface State {
 }
 ;
 
-export const initialState = {
+export const initialState: State = {
   registered: false,
   loading: false,
   user: {},
@@ -21,10 +18,11 @@ export const initialState = {
 export function reducer(state: any = initialState, action: Action) {
   switch (action.type) {
     case user.ActionTypes.REGISTER: {
-      return Object.assign(state, {loading: true});
+      return Object.assign({}, state, {loading: true});
     }
     case user.ActionTypes.REGISTER_COMPLETE: {
-      return Object.assign(state, {loading: false, user: action.payload});
+      return Object.assign(
+          {}, state, {loading: false, user: action.payload, registered: true});
     }
     default:
       return state;

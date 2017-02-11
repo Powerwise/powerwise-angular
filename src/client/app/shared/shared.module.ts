@@ -4,6 +4,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {MaterialModule} from '@angular/material';
 import {RouterModule} from '@angular/router';
 
+import {AddDeviceComponent} from './add-device/add-device.component';
 import {ApiService} from './api/api.service';
 import {NameListService} from './name-list/name-list.service';
 import {NavbarComponent} from './navbar/navbar.component';
@@ -15,12 +16,15 @@ import {ToolbarComponent} from './toolbar/toolbar.component';
  */
 
 @NgModule({
-  imports: [CommonModule, RouterModule, MaterialModule.forRoot()],
-  declarations: [ToolbarComponent, NavbarComponent],
+  imports: [
+    CommonModule, RouterModule, MaterialModule.forRoot(), ReactiveFormsModule
+  ],
+  declarations: [ToolbarComponent, NavbarComponent, AddDeviceComponent],
   exports: [
     ToolbarComponent, NavbarComponent, CommonModule, ReactiveFormsModule,
     RouterModule, MaterialModule
-  ]
+  ],
+  entryComponents: [AddDeviceComponent]
 })
 export class SharedModule {
   static forRoot(): ModuleWithProviders {

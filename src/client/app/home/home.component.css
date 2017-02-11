@@ -1,5 +1,6 @@
 :host {
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
 }
 
@@ -8,6 +9,11 @@ form {
   flex-direction: column;
 }
 
-md-card {
-  min-width: 500px;
+.device-subtitle {
+  display: flex;
+  align-items: center;
+}
+
+.spacer {
+  flex: 1 1 auto;
 }

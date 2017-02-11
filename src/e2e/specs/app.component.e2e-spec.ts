@@ -1,8 +1,8 @@
-import { browser, element, by } from 'protractor';
+import {browser, by, element} from 'protractor';
 
 describe('App', () => {
 
-  beforeEach(async () => {
+  beforeEach(async() => {
     return await browser.get('/');
   });
 
@@ -15,11 +15,13 @@ describe('App', () => {
   });
 
   it('should have correct nav text for Home', () => {
-    expect(element(by.css('sd-app sd-navbar nav a:first-child')).getText()).toEqual('HOME');
+    expect(element(by.css('sd-app sd-navbar nav a:first-child')).getText())
+        .toEqual('HOME');
   });
 
-  it('should have correct nav text for About', () => {
-    expect(element(by.css('sd-app sd-navbar nav a:nth-child(2)')).getText()).toEqual('ABOUT');
+  it('should have correct nav text for Admin', () => {
+    expect(element(by.css('sd-app sd-navbar nav a:nth-child(2)')).getText())
+        .toEqual('ABOUT');
   });
 
 });

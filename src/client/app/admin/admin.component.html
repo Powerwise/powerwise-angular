@@ -1,0 +1,7 @@
+<div>
+  <md-progress-bar mode="indeterminate" *ngIf="(loading | async)" color="accent"></md-progress-bar>
+</div>
+<button md-button (click)="createEvent()"> Create Event</button>
+<pre>
+  {{event | async | json}}
+</pre>

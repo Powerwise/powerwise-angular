@@ -1,13 +1,13 @@
-import { browser, element, by } from 'protractor';
+import {browser, by, element} from 'protractor';
 
-describe('About', () => {
+describe('Admin', () => {
 
-  beforeEach(async () => {
-    return await browser.get('/about');
+  beforeEach(async() => {
+    return await browser.get('/admin');
   });
 
   it('should have correct feature heading', () => {
-    expect(element(by.css('sd-about h2')).getText()).toEqual('Features');
+    expect(element(by.css('sd-admin h2')).getText()).toEqual('Features');
   });
 
 });
