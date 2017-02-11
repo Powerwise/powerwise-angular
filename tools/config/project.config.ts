@@ -1,7 +1,7 @@
-import {join} from 'path';
+import { join } from 'path';
 
-import {SeedConfig} from './seed.config';
-import {ExtendPackages} from './seed.config.interfaces';
+import { SeedConfig } from './seed.config';
+import { ExtendPackages } from './seed.config.interfaces';
 // import { ExtendPackages } from './seed.config.interfaces';
 
 /**

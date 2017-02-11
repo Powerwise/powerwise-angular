@@ -1,5 +1,5 @@
 import {Action, ActionReducer} from '@ngrx/store';
-import {append, assoc, assocPath} from 'ramda';
+import * as R from 'ramda';
 
 import * as device from '../actions/device.actions';
 
@@ -24,15 +24,15 @@ export function reducer(state: State = initialState, action: Action) {
       let {payload} = action;
       let {id} = payload;
       let _state: any =
-          assoc('ids', append(action.payload.id, state.ids), state);
-      _state = assocPath(['entities', id], payload, _state);
+          R.assoc('ids', R.append(action.payload.id, state.ids), state);
+      _state = R.assocPath(['entities', id], payload, _state);
       return _state;
     }
     case device.ActionTypes.SAVE: {
-      return assoc('loading', true, state);
+      return R.assoc('loading', true, state);
     }
     case device.ActionTypes.SAVE_COMPLETE: {
-      return assoc('loading', false, state);
+      return R.assoc('loading', false, state);
     }
     case device.ActionTypes.REMOVE: {
       return Object.assign(state, {loading: false, user: action.payload});

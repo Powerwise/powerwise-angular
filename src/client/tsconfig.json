@@ -23,7 +23,6 @@
     ],
     "types": [
       "node",
-      "jasmine",
       "systemjs"
     ]
   },

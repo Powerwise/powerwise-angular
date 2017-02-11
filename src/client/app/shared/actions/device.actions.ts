@@ -22,7 +22,7 @@ export class RemoveAction implements Action {
 export class SaveAction implements Action {
   type = ActionTypes.SAVE;
 
-  constructor() {}
+  constructor(public payload: any = {}) {}
 }
 export class SaveCompleteAction implements Action {
   type = ActionTypes.SAVE_COMPLETE;

@@ -17,6 +17,7 @@ import {UserEffects} from './shared/effects/user.effects';
 import {reducer} from './shared/reducers/index';
 import {SharedModule} from './shared/shared.module';
 
+
 @NgModule({
   imports: [
     BrowserModule, HttpModule, AppRoutingModule, AdminModule, HomeModule,

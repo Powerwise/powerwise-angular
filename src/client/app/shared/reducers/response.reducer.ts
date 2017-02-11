@@ -1,5 +1,5 @@
 import {Action, ActionReducer} from '@ngrx/store';
-import {append, assoc, assocPath, filter} from 'ramda';
+import * as R from 'ramda';
 
 import * as resp from '../actions/response.actions';
 
@@ -22,22 +22,23 @@ export const initialState: State = {
 export function reducer(state: any = initialState, action: Action) {
   switch (action.type) {
     case resp.ActionTypes.SELECT_EVENT: {
-      return assoc('eventId', action.payload, state);
+      return R.assoc('eventId', action.payload, state);
     }
     case resp.ActionTypes.ADD: {
-      return assoc('selected', [action.payload, ...state.selected], state);
+      return R.assoc('selected', [action.payload, ...state.selected], state);
       ;
     }
     case resp.ActionTypes.REMOVE: {
-      return assoc(
-          'selected', filter(n => n !== action.payload, state.selected), state);
+      return R.assoc(
+          'selected', R.filter(n => n !== action.payload, state.selected),
+          state);
     }
     case resp.ActionTypes.SUBMIT: {
-      return assoc('loading', true, state);
+      return R.assoc('loading', true, state);
     }
     case resp.ActionTypes.SUBMIT_SUCCESS: {
-      state = assoc('loading', false, state);
-      return assocPath(['responses', state.eventId], state.selected, state);
+      state = R.assoc('loading', false, state);
+      return R.assocPath(['responses', state.eventId], state.selected, state);
     }
     default:
       return state;
