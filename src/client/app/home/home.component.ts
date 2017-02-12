@@ -20,7 +20,7 @@ import * as fromRoot from '../shared/reducers/index';
   templateUrl: 'home.component.html',
   styleUrls: ['home.component.css'],
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
   loading: Observable<boolean>;
   saving: Observable<boolean>;
   registered: Observable<boolean>;
@@ -38,25 +38,11 @@ export class HomeComponent implements OnInit {
   constructor(
       private store: Store<fromRoot.State>, public fb: FormBuilder,
       public dialog: MdDialog) {
-    this.loading = this.store.select(fromRoot.getUserLoading);
-    this.registered = this.store.select(fromRoot.getUserRegistered);
-    this.user = this.store.select(fromRoot.getUser);
     this.devices = this.store.select(fromRoot.getDevices);
     this.saving = this.store.select(fromRoot.getDeviceLoading);
     this.potential = this.store.select(fromRoot.devicePotential);
   }
 
-  ngOnInit() {
-    this.createForm();
-  }
-
-  createForm() {
-    this.form = this.fb.group(
-        {email: ['probinson+1@nextfaze.com'], postcode: ['5006']});
-  }
-  register(payload: any) {
-    this.store.dispatch(new user.RegisterAction(payload));
-  }
   onAdd() {
     this.dialogRef = this.dialog.open(AddDeviceComponent, this.config);
     this.dialogRef.afterClosed().subscribe(result => {

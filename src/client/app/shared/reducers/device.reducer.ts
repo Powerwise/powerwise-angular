@@ -32,7 +32,15 @@ export function reducer(state: State = initialState, action: Action) {
       return Object.assign({}, state, {loading: false});
     }
     case device.ActionTypes.REMOVE: {
-      return Object.assign({}, state, {loading: false, user: action.payload});
+      return Object.assign({}, state, {loading: false});
+    }
+    case device.ActionTypes.BULK_ADD: {
+      let entities = action.payload.reduce((a: any, b: any) => {
+        a[b.id] = b;
+        return a;
+      }, {});
+      let ids = action.payload.map(({id}: any) => id);
+      return Object.assign({}, state, {loading: false, ids, entities});
     }
     default:
       return state;

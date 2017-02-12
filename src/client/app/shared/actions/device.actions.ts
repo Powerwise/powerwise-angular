@@ -6,6 +6,7 @@ export const ActionTypes = {
   REMOVE: type('[Device] Remove'),
   SAVE: type('[Device] Save'),
   SAVE_COMPLETE: type('[Device] Save Complete'),
+  BULK_ADD: type('[Device] Bulk Add'),
 };
 
 export class AddAction implements Action {
@@ -29,9 +30,14 @@ export class SaveCompleteAction implements Action {
 
   constructor(public payload: any) {}
 }
+export class BulkAddAction implements Action {
+  type = ActionTypes.BULK_ADD;
+
+  constructor(public payload: any) {}
+}
 /**
  * Export a type alias of all actions in this action group
  * so that reducers can easily compose action types
  */
 export type Actions =
-    AddAction | RemoveAction | SaveCompleteAction | SaveAction;
+    AddAction | RemoveAction | SaveCompleteAction | SaveAction | BulkAddAction;

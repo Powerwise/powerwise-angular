@@ -4,6 +4,7 @@ import {Actions, Effect} from '@ngrx/effects';
 import {Action} from '@ngrx/store';
 import {Observable} from 'rxjs/Observable';
 
+import * as device from '../actions/device.actions';
 import * as user from '../actions/user.actions';
 import {ApiService} from '../api/api.service';
 
@@ -24,7 +25,7 @@ export class UserEffects {
           .map((action: user.RegisterAction) => action.payload)
           .map(payload => {
             this.router.navigate(['/']);
-            return {type: 'ROUTE_TO_HOME', payload: {}};
+            return new device.BulkAddAction(payload.devices || []);
           });
   constructor(
       private actions$: Actions, private api: ApiService,
