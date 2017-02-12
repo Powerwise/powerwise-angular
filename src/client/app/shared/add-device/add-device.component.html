@@ -7,7 +7,7 @@
       <input md-input formControlName="name" placeholder="Device Name" type="text" [max]="256" />
     </md-input-container>
     <md-input-container>
-      <input md-input type="number" [step]="1" formControlName="killowats" placeholder="Killowats (hrs)" />
+      <input md-input type="number" [step]="1" formControlName="killowats" [max]="2560" placeholder="watts/h" />
     </md-input-container>
     <md-select placeholder="Device Type" formControlName="type">
       <md-option [value]="'FRIDGE'">
