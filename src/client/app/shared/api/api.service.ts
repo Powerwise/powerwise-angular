@@ -28,6 +28,12 @@ export class ApiService {
         .map((res: Response) => res.json())
         .catch(this.handleError);
   }
+  getDevices(payload: any) {
+    return this.http
+        .post(`${Config.API}/get-devices`, {eventId: payload.timestamp + ''})
+        .map((res: Response) => res.json())
+        .catch(this.handleError);
+  }
   /**
     * Handle HTTP error
     */

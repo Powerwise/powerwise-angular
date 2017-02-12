@@ -17,6 +17,15 @@ export class SheddingEffects {
             return this.api.createEvent(event).map(
                 payload => new shedding.CreateCompleteAction(payload));
           });
+  @Effect()
+  get$: Observable<Action> =
+      this.actions$.ofType(shedding.ActionTypes.GET_DEVICES)
+          .map((action: shedding.CreateAction) => action.payload)
+          .switchMap(() => this.store.select(fromRoot.getSheddingEvent).take(1))
+          .filter(({timestamp}) => timestamp)
+          .switchMap(
+              event => this.api.getDevices(event).map(
+                  payload => new shedding.ReceiveDevicesAction(payload)));
   constructor(
       private actions$: Actions, private api: ApiService,
       public store: Store<any>) {}

@@ -14,15 +14,18 @@ export class UserEffects {
       this.actions$.ofType(user.ActionTypes.REGISTER)
           .map((action: user.RegisterAction) => action.payload)
           .switchMap(payload => {
-            return this.api.register(payload).map(
-                payload => new user.RegisterCompleteAction(payload));
-          })
-          .map(payload => {
-            console.log('here');
-            this.router.navigate(['/']);
-            return {type: 'ROUTE_HOME', payload: {}};
+            return this.api.register(payload).map(payload => {
+              return new user.RegisterCompleteAction(payload);
+            });
           });
-
+  @Effect()
+  goHome$: Observable<Action> =
+      this.actions$.ofType(user.ActionTypes.REGISTER_COMPLETE)
+          .map((action: user.RegisterAction) => action.payload)
+          .map(payload => {
+            this.router.navigate(['/']);
+            return {type: 'ROUTE_TO_HOME', payload: {}};
+          });
   constructor(
       private actions$: Actions, private api: ApiService,
       public router: Router) {}

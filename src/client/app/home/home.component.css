@@ -9,6 +9,10 @@ form {
   flex-direction: column;
 }
 
+[md-line] {
+  display: flex;
+}
+
 .device-subtitle {
   display: flex;
   align-items: center;

@@ -13,7 +13,12 @@
     <md-list>
       <h3 md-subheader>Potential kw/h ({{potential | async}})</h3>
       <md-list-item *ngFor="let device of devices | async">
-        <span> {{device.name}}</span> <span class="spacer"></span> <span>{{device.killowat}} (kw/h)</span>
+        <span md-line>
+          <span> {{device.name}}</span> <span class="spacer"></span> <span>{{device.killowats}} (kw/h)</span>
+        </span>
+        <span md-line>
+          <i> {{device.type}}</i>
+        </span>
       </md-list-item>
     </md-list>
   </md-card-content>

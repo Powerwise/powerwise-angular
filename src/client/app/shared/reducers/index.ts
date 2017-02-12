@@ -66,7 +66,8 @@ export const getSheddingLoading =
     createSelector(getSheddingState, fromShedding.getLoading);
 export const getSheddingEvent =
     createSelector(getSheddingState, fromShedding.getEvent);
-
+export const getSheddingDevices =
+    createSelector(getSheddingState, fromShedding.getDevices);
 // Response State
 
 export const getResponseState = (state: State) => state.response;
@@ -106,3 +107,6 @@ export const previousSelection = createSelector(
             {}, device, {checked: ~previous.indexOf(device.id)});
       });
     });
+export const totalKillowats = createSelector(getSheddingDevices, (devices) => {
+  return devices.reduce((a, b) => a + b.killowats, 0);
+});

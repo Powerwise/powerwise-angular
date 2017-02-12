@@ -1,17 +1,21 @@
-<md-card>
-  <md-card-subtitle>More devices === more pandas</md-card-subtitle>
-  <md-card-title>Add Device</md-card-title>
-  <md-card-content>
-    <form [formGroup]="form" (ngSubmit)="form.valid && onAdd(form.value)">
-      <md-input formControlName="name" placeholder="Device Name" type="text" [max]="256"></md-input>
-      <md-input-container>
-        <input md-input type="number" [step]="1" formControlName="killowats" placeholder="Killowats (hrs)" />
-      </md-input-container>
-      <md-input formControlName="type" placeholder="type" type="text"></md-input>
-      <md-dialog-actions>
-        <button color="success" type="submit" md-button>Add</button>
-        <button type="button" md-button (click)="onCancel()">Cancel</button>
-      </md-dialog-actions>
-    </form>
-  </md-card-content>
-</md-card>
+<h2 md-dialog-title>
+  More devices === more pandas</h2>
+<h1 md-dialog-title>Add Device</h1>
+<md-dialog-content>
+  <form [formGroup]="form">
+    <md-input-container>
+      <input md-input formControlName="name" placeholder="Device Name" type="text" [max]="256" />
+    </md-input-container>
+    <md-input-container>
+      <input md-input type="number" [step]="1" formControlName="killowats" placeholder="Killowats (hrs)" />
+    </md-input-container>
+    <md-input-container>
+      <input md-input formControlName="type" placeholder="type" type="text" />
+    </md-input-container>
+  </form>
+</md-dialog-content>
+<md-dialog-actions>
+  <button color="primary" (click)="form.valid && onAdd(form.value)" md-raised-button>Add</button>
+  <span class="spacer"></span>
+  <button type="button" md-button (click)="onCancel()">Cancel</button>
+</md-dialog-actions>

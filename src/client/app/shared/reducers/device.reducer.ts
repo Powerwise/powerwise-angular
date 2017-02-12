@@ -12,11 +12,8 @@ export interface State {
 
 export const initialState: State = {
   loading: false,
-  entities: {
-    DEMO_ID:
-        {id: 'DEMO_ID', name: 'Demo Item', type: 'FRIDGE', killowats: 100}
-  },
-  ids: ['DEMO_ID']
+  entities: {},
+  ids: []
 };
 export function reducer(state: State = initialState, action: Action) {
   switch (action.type) {
@@ -35,7 +32,7 @@ export function reducer(state: State = initialState, action: Action) {
       return R.assoc('loading', false, state);
     }
     case device.ActionTypes.REMOVE: {
-      return Object.assign(state, {loading: false, user: action.payload});
+      return Object.assign({}, state, {loading: false, user: action.payload});
     }
     default:
       return state;

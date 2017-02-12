@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
 import {Observable} from 'rxjs/Rx';
 
@@ -14,12 +14,20 @@ import * as fromRoot from '../shared/reducers/index';
   templateUrl: 'admin.component.html',
   styleUrls: ['admin.component.css']
 })
-export class AdminComponent {
+export class AdminComponent implements OnInit {
   loading: Observable<boolean>;
   event: Observable<any>;
-  constructor(private store: Store<fromRoot.State>) {
-    this.loading = store.select(fromRoot.getSheddingLoading);
-    this.event = store.select(fromRoot.getSheddingEvent);
+  devices: Observable<any>;
+  total: Observable<any>;
+  constructor(private store: Store<fromRoot.State>) {}
+  ngOnInit() {
+    this.loading = this.store.select(fromRoot.getSheddingLoading);
+    this.event = this.store.select(fromRoot.getSheddingEvent);
+    this.devices = this.store.select(fromRoot.getSheddingDevices);
+    this.total = this.store.select(fromRoot.totalKillowats);
+  }
+  getDevices() {
+    this.store.dispatch(new shedding.GetDevicesAction());
   }
   createEvent() {
     let payload = {timestamp: Date.now(), duration: 60 * 25};

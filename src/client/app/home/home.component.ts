@@ -31,9 +31,9 @@ export class HomeComponent implements OnInit {
   dialogRef: MdDialogRef<any>;
   config: MdDialogConfig = {
     disableClose: false,
-    width: '',
-    height: '',
-    position: {top: '', bottom: '', left: '', right: ''}
+    // width: '',
+    // height: '',
+    // position: {top: '', bottom: '', left: '', right: ''}
   };
   constructor(
       private store: Store<fromRoot.State>, public fb: FormBuilder,
@@ -60,7 +60,7 @@ export class HomeComponent implements OnInit {
   onAdd() {
     this.dialogRef = this.dialog.open(AddDeviceComponent, this.config);
     this.dialogRef.afterClosed().subscribe(result => {
-      if (result.type === 'CREATE')
+      if (result && result.type === 'CREATE')
         this.store.dispatch(new device.AddAction(result.payload));
     });
   }

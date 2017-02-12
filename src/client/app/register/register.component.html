@@ -2,14 +2,14 @@
   <md-card-subtitle>Save the pandas</md-card-subtitle>
   <md-card-title>Register</md-card-title>
   <md-card-content>
-    <form [formGroup]="form" (ngSubmit)="register(form.value)">
+    <form [formGroup]="form" (ngSubmit)="form.valid && register(form.value)">
       <md-input-container>
         <input md-input formControlName="email" name="email" placeholder="Email">
       </md-input-container>
       <md-input-container>
         <input md-input formControlName="postcode" name="postcode" placeholder="Postcode">
       </md-input-container>
-      <button md-raised-button color="accent" [disabled]="loading | async">Register Me!</button>
+      <button md-raised-button color="accent">Register Me!</button>
     </form>
   </md-card-content>
   <md-card-footer>

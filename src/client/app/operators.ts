@@ -7,6 +7,7 @@ import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/skip';
 import 'rxjs/add/operator/takeUntil';
 import 'rxjs/add/operator/take';
+import 'rxjs/add/operator/filter';
 
 // ngrx
 // import '@ngrx/core/add/operator/select';

@@ -2,6 +2,7 @@
   <md-progress-bar mode="indeterminate" *ngIf="(loading | async)" color="accent"></md-progress-bar>
 </div>
 <button md-button (click)="createEvent()"> Create Event</button>
-<pre>
-  {{event | async | json}}
-</pre>
+<button md-button (click)="getDevices()"> Load Devices</button>
+<h1>
+  Total Killowats Pledged Per Hour{{totalSaved | async }}
+</h1>
