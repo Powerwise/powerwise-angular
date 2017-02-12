@@ -1,7 +1,7 @@
-import { join } from 'path';
+import {join} from 'path';
 
-import { SeedConfig } from './seed.config';
-import { ExtendPackages } from './seed.config.interfaces';
+import {SeedConfig} from './seed.config';
+import {ExtendPackages} from './seed.config.interfaces';
 // import { ExtendPackages } from './seed.config.interfaces';
 
 /**
@@ -11,7 +11,7 @@ import { ExtendPackages } from './seed.config.interfaces';
  */
 export class ProjectConfig extends SeedConfig {
   PROJECT_TASKS_DIR = join(process.cwd(), this.TOOLS_DIR, 'tasks', 'project');
-
+  APP_TITLE = 'Empowered By PowerWise';
   constructor() {
     super();
     // this.APP_TITLE = 'Put name of your app here';
