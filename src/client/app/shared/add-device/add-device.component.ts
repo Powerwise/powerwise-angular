@@ -23,6 +23,7 @@ export class AddDeviceComponent implements OnInit {
     });
   }
   onAdd(payload: any) {
+    if (payload.killowats > 2500) return;
     this.dialog.close({type: 'CREATE', payload});
   }
   onCancel() {
