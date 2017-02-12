@@ -17,9 +17,9 @@ export class AddDeviceComponent implements OnInit {
   ngOnInit() {
     this.form = this.fb.group({
       id: [this.guid()],
-      type: ['GOOD_TYPE', Validators.required],
+      type: ['', Validators.required],
       killowats: [100, Validators.required],
-      name: ['FRIDGE', Validators.required]
+      name: ['', Validators.required]
     });
   }
   onAdd(payload: any) {

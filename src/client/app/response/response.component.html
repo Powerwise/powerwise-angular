@@ -5,7 +5,7 @@
   <md-card-title>Devices</md-card-title>
   <md-card-content>
     <md-list>
-      <h3 md-subheader>Items slected potential {{potential | async}} kw/h</h3>
+      <h3 md-subheader>Items slected potential {{potential | async}} watts/h</h3>
       <md-list-item *ngFor="let device of devices | async">
         <md-slide-toggle (change)="onSelect($event.checked, device.id)">
           {{device.name}}
