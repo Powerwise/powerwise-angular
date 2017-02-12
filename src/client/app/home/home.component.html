@@ -1,22 +1,4 @@
 <md-card>
-  <md-card-subtitle>Save the pandas</md-card-subtitle>
-  <md-card-title>Register</md-card-title>
-  <md-card-content>
-    <form [formGroup]="form" (ngSubmit)="register(form.value)">
-      <md-input-container>
-        <input md-input formControlName="email" name="email" placeholder="Email">
-      </md-input-container>
-      <md-input-container>
-        <input md-input formControlName="postcode" name="postcode" placeholder="Postcode">
-      </md-input-container>
-      <button md-raised-button color="accent" [disabled]="loading | async">Register Me!</button>
-    </form>
-  </md-card-content>
-  <md-card-footer>
-    <md-progress-bar mode="indeterminate" *ngIf="loading | async" color="accent"></md-progress-bar>
-  </md-card-footer>
-</md-card>
-<md-card>
   <md-card-subtitle class="device-subtitle">
     <span>
       Add Devices To Your Account
@@ -31,7 +13,7 @@
     <md-list>
       <h3 md-subheader>Potential kw/h ({{potential | async}})</h3>
       <md-list-item *ngFor="let device of devices | async">
-        {{device.name}}
+        <span> {{device.name}}</span> <span class="spacer"></span> <span>{{device.killowat}} (kw/h)</span>
       </md-list-item>
     </md-list>
   </md-card-content>

@@ -3,6 +3,7 @@ import {NgModule} from '@angular/core';
 import {ReactiveFormsModule} from '@angular/forms';
 import {StoreModule} from '@ngrx/store';
 
+import {RegisterComponent} from '../register/register.component';
 import {ResponseComponent} from '../response/response.component';
 import {NameListService} from '../shared/name-list/name-list.service';
 import {SharedModule} from '../shared/shared.module';
@@ -12,7 +13,7 @@ import {HomeComponent} from './home.component';
 
 @NgModule({
   imports: [CommonModule, HomeRoutingModule, SharedModule, ReactiveFormsModule],
-  declarations: [HomeComponent, ResponseComponent],
+  declarations: [HomeComponent, ResponseComponent, RegisterComponent],
   exports: [HomeComponent, ResponseComponent],
   providers: [NameListService]
 })

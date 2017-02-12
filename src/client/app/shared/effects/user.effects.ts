@@ -1,4 +1,5 @@
 import {Injectable} from '@angular/core';
+import {Router} from '@angular/router';
 import {Actions, Effect} from '@ngrx/effects';
 import {Action} from '@ngrx/store';
 import {Observable} from 'rxjs/Observable';
@@ -15,6 +16,14 @@ export class UserEffects {
           .switchMap(payload => {
             return this.api.register(payload).map(
                 payload => new user.RegisterCompleteAction(payload));
+          })
+          .map(payload => {
+            console.log('here');
+            this.router.navigate(['/']);
+            return {type: 'ROUTE_HOME', payload: {}};
           });
-  constructor(private actions$: Actions, private api: ApiService) {}
+
+  constructor(
+      private actions$: Actions, private api: ApiService,
+      public router: Router) {}
 }
