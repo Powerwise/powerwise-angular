@@ -24,7 +24,8 @@ export class UserEffects {
       this.actions$.ofType(user.ActionTypes.REGISTER_COMPLETE)
           .map((action: user.RegisterAction) => action.payload)
           .map(payload => {
-            this.router.navigate(['/']);
+            debugger;
+            // this.router.navigate(['/']);
             return new device.BulkAddAction(payload.devices || []);
           });
   constructor(

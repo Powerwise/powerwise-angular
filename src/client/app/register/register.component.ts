@@ -1,6 +1,6 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Store} from '@ngrx/store';
 import {Observable} from 'rxjs/Rx';
 
@@ -17,15 +17,19 @@ import * as fromRoot from '../shared/reducers/index';
   templateUrl: 'register.component.html',
   styleUrls: ['register.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit, OnDestroy {
   loading: Observable<boolean>;
   registered: Observable<boolean>;
   form: FormGroup;
+  reg: any;
   constructor(
       private store: Store<fromRoot.State>, public fb: FormBuilder,
-      public route: ActivatedRoute) {
+      public route: ActivatedRoute, public router: Router) {
     this.loading = this.store.select(fromRoot.getUserLoading);
     this.registered = this.store.select(fromRoot.getUserRegistered);
+    this.reg = this.registered.subscribe((val) => {
+      if (val) this.router.navigate(['/']);
+    });
   }
 
   ngOnInit() {
@@ -41,5 +45,8 @@ export class RegisterComponent implements OnInit {
   }
   register(payload: any) {
     this.store.dispatch(new user.RegisterAction(payload));
+  }
+  ngOnDestroy() {
+    this.reg.unsubscribe();
   }
 }
