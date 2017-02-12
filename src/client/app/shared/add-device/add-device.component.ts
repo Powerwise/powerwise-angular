@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MdDialogRef} from '@angular/material';
-import * as uuid from 'node-uuid';
+
 @Component({
   moduleId: module.id,
   selector: 'add-device',
@@ -16,7 +16,7 @@ export class AddDeviceComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.fb.group({
-      id: [uuid.v4()],
+      id: [this.guid()],
       type: ['GOOD_TYPE', Validators.required],
       killowats: [100, Validators.required],
       name: ['FRIDGE', Validators.required]
@@ -27,5 +27,14 @@ export class AddDeviceComponent implements OnInit {
   }
   onCancel() {
     this.dialog.close({action: 'CANCEL'});
+  }
+  private guid() {
+    function s4() {
+      return Math.floor((1 + Math.random()) * 0x10000)
+          .toString(16)
+          .substring(1);
+    }
+    return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() +
+        s4() + s4();
   }
 }

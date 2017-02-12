@@ -20,16 +20,16 @@ export function reducer(state: State = initialState, action: Action) {
     case device.ActionTypes.ADD: {
       let {payload} = action;
       let {id} = payload;
-      let _state: any =
-          R.assoc('ids', R.append(action.payload.id, state.ids), state);
-      _state = R.assocPath(['entities', id], payload, _state);
-      return _state;
+      return Object.assign({}, state, {
+        ids: [...state.ids, id],
+        entities: Object.assign({}, state.entities, {[id]: payload})
+      });
     }
     case device.ActionTypes.SAVE: {
-      return R.assoc('loading', true, state);
+      return Object.assign({}, state, {loading: true});
     }
     case device.ActionTypes.SAVE_COMPLETE: {
-      return R.assoc('loading', false, state);
+      return Object.assign({}, state, {loading: false});
     }
     case device.ActionTypes.REMOVE: {
       return Object.assign({}, state, {loading: false, user: action.payload});

@@ -14,7 +14,7 @@ import * as fromRoot from '../shared/reducers/index';
   templateUrl: 'admin.component.html',
   styleUrls: ['admin.component.css']
 })
-export class AdminComponent implements OnInit, OnDestroy {
+export class AdminComponent implements OnInit {
   loading: Observable<boolean>;
   event: Observable<any>;
   devices: Observable<any>;
@@ -26,9 +26,6 @@ export class AdminComponent implements OnInit, OnDestroy {
     this.event = this.store.select(fromRoot.getSheddingEvent);
     this.devices = this.store.select(fromRoot.getSheddingDevices);
     this.total = this.store.select(fromRoot.totalKillowats);
-    this.interval = setInterval(() => {
-      this.getDevices();
-    }, 2000);
   }
   getDevices() {
     this.store.dispatch(new shedding.GetDevicesAction());
@@ -36,8 +33,5 @@ export class AdminComponent implements OnInit, OnDestroy {
   createEvent() {
     let payload = {timestamp: Date.now(), duration: 60 * 25};
     this.store.dispatch(new shedding.CreateAction(payload));
-  }
-  ngOnDestroy() {
-    clearInterval(this.interval);
   }
 }

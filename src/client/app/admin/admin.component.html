@@ -4,5 +4,5 @@
 <button md-button (click)="createEvent()"> Create Event</button>
 <button md-button (click)="getDevices()"> Load Devices</button>
 <h1>
-  Total Killowats Pledged Per Hour{{totalSaved | async }}
+  Total Killowats Pledged Per Hour for Event {{event | async | json}} {{total | async }}
 </h1>

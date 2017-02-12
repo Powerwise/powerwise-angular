@@ -9,9 +9,20 @@
     <md-input-container>
       <input md-input type="number" [step]="1" formControlName="killowats" placeholder="Killowats (hrs)" />
     </md-input-container>
-    <md-input-container>
-      <input md-input formControlName="type" placeholder="type" type="text" />
-    </md-input-container>
+    <md-select placeholder="Device Type" formControlName="type">
+      <md-option [value]="'FRIDGE'">
+        Refrigerator
+      </md-option>
+      <md-option [value]="'FREEZER'">
+        Freezer
+      </md-option>
+      <md-option [value]="'LIGHTS'">
+        House Lighting
+      </md-option>
+      <md-option [value]="'AIR_CONDITIONER'">
+        Air Conditioner
+      </md-option>
+    </md-select>
   </form>
 </md-dialog-content>
 <md-dialog-actions>

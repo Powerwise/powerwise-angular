@@ -11,3 +11,11 @@ form {
 md-dialog-actions {
   display: flex;
 }
+
+md-input-container {
+  margin: 10px 0;
+}
+
+md-select {
+  margin: 10px 0;
+}
